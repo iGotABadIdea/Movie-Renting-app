@@ -1,13 +1,20 @@
 import React, { Component } from 'react'; 
-const Pagination = () => {
+import _ from 'lodash';
+const Pagination = (props) => {
+  const {itemsCount, pageSize}=props;
+  const pagesCount=itemsCount/pageSize;
+  if(pagesCount<=1) return null;
+  const pages=_.range(1,pagesCount+1);
+
+
     return ( <React.Fragment>
                 <nav aria-label="...">
   <ul className="pagination pagination-lg">
-    <li className="page-item active" aria-current="page">
-      <span className="page-link">1</span>
-    </li>
-    <li className="page-item"><a className="page-link" href="#">2</a></li>
-    <li className="page-item"><a className="page-link" href="#">3</a></li>
+    {pages.map(page=>( <li key={page} className="page-item" aria-current="page">
+      <span className="page-link">{page}</span>
+    </li>))}
+   
+   
   </ul>
 </nav>
             </React.Fragment> );
