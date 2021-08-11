@@ -1,4 +1,5 @@
-import React, { Component } from 'react'; 
+import React from 'react'; 
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 const Pagination = (props) => {
   const {itemsCount, pageSize,onPageChange,currentPage}=props;
@@ -20,8 +21,14 @@ const Pagination = (props) => {
 </nav>
             </React.Fragment> );
 }
+Pagination.propTypes={
+  itemsCount:PropTypes.number.isRequired, 
+  pageSize: PropTypes.number.isRequired,
+  onPageChange:PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,        //it is a good practise to add proptypes 
+}
  
-export default Pagination;
+export default Pagination; 
 
 
 

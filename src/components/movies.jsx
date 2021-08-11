@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { getMovies } from "../services/fakeMovieService";
+import { getGenres } from '../services/fakeGenreService';
 import Like from './common/like';
 import Pagination from './common/pagination'
 import {paginate} from '../utils/paginate';
+import ListGroup from './common/listGroup'
 class Movies extends Component {
     state = {
-        movies:getMovies(),
+        movies:[],
+        genres:[],
         pageSize:4,
         currentPage:1
      };
+     componentDidMount() {
+       this.setState({movies:getMovies(),genres:getGenres()});
+     }
      handleDelete=movie=>{
        const movies2=this.state.movies.filter(m=>(m._id!==movie._id))
        this.setState({movies:movies2})
@@ -22,16 +28,27 @@ class Movies extends Component {
      };
      handlePageChange=(page)=>{
        this.setState({currentPage:page})
+     };
+     handleGenreSelect=genre=>{
+
      }
     render() {
       const {length:count}=this.state.movies;
-      const {pageSize,currentPage,movies:allMovies}=this.state;
+      const {pageSize,currentPage,genres,movies:allMovies}=this.state;
       if(count===0) return <p>There are no Movies in the data base</p>
       const movies=paginate(allMovies,currentPage,pageSize)
         return (
-          <React.Fragment>
-            <p>Showing {count} movies in the data-base</p>
-        <table className="table table-hover">
+              <div className='row'>
+          <div className="col-3">
+            <ListGroup 
+            items={genres } 
+            textProperty="name" 
+            valueProperty="_id"
+            onItemSelect={this.handleGenreSelect } />
+          </div>
+           <div className="col">
+             <p>Showing {count} movies in the data-base</p>
+           <table className="table table-hover">
   <thead>
     <tr>
       <th scope="col">Title</th>
@@ -60,8 +77,10 @@ class Movies extends Component {
 </table> 
 <Pagination itemsCount={count} pageSize={pageSize} onPageChange={this.handlePageChange}
 currentPage={currentPage}/>
- </React.Fragment>);
-    }
+          </div>
+        </div>
+      
+        )}
 }
 
 export  default Movies ;
