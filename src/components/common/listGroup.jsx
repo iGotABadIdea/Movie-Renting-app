@@ -1,14 +1,17 @@
  import React, { Component } from 'react';
 const ListGroup = (props) => {
-    const {items,textProperty,valueProperty,onItemSelect} = props;
+    const {items,textProperty,valueProperty,selectedItem,onItemSelect} = props;
     
-    return ( <div className="list-group">
+    return ( <ul className="list-group">
         
-  {items.map(item=> <li onClick={()=>onItemSelect(item)} key={item[valueProperty]}  className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" aria-current="true">
+  {items.map(item=>
+     <li 
+     onClick={()=>onItemSelect(item)}
+      key={item[valueProperty]}  
+      className={item===selectedItem ? "list-group-item active":"list-group-item"}>
     {item[textProperty]}                     
-    <span className="badge bg-primary rounded-pill align">14</span>
   </li>)}
-</div> );
+</ul> );
 }
  
 ListGroup.defaultProps={
