@@ -8,17 +8,15 @@ class MoviesTable extends Component {
         {path:'genre.name',label:'Genre'},
         {path:'numberInStock',label:'Stock'},
         {path:'dailyRentalRate',label:'Rate'},
-        {},
-        {},
-
-
+        {key:'like'},
+        {key:'delete'}
     ]
     
     render() { 
-             const {movies,onDelete,onLike} = this.props;
+             const {movies,onDelete,onLike,sortColumn,onSort} = this.props;
     return ( 
         <table className="table table-hover">
- <TableHeader column/>
+ <TableHeader columns={this.columns} sortColumn={sortColumn} onSort={onSort}/>
   <tbody>
       {movies.map(movie=>(
     <tr key={movie._id}>
