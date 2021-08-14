@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //we have to pass column:array
 //sortColumn:object column
 //onSort:fucntion to this class 
+//stay consistent 
 
 class TableHeader extends Component {
     raiseSort=path=>{
