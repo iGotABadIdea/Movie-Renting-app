@@ -97,6 +97,3 @@ export function deleteMovie(id) {
   return movieInDb;
 }
 
-export function likeButton(){
-
-}
