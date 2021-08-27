@@ -5,6 +5,7 @@ import MoviesTable from './moviesTable'
 import Pagination from './common/pagination'
 import {paginate} from '../utils/paginate';
 import ListGroup from './common/listGroup'
+import NavBar from './common/navbar';
 import _ from 'lodash';
 class Movies extends Component {
     state = {
@@ -52,6 +53,8 @@ class Movies extends Component {
       if(count===0) return <p>There are no Movies in the data base</p>
       const {totalCount,data:movies}=this.getPageData();
         return (
+          <React.Fragment>
+            <NavBar/>
               <div className='row'>
           <div className="col-3">
             <ListGroup 
@@ -73,6 +76,7 @@ class Movies extends Component {
 currentPage={currentPage}/>
           </div>
         </div>
+        </React.Fragment>
       
         )}
 }
