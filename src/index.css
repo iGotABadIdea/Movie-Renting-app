@@ -17,3 +17,7 @@ code {
 .clickable{
   cursor: pointer;
 }
+
+.loginButton{
+  margin-top:10px;
+}
