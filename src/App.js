@@ -5,6 +5,7 @@ import Rentals from './components/rentals';
 import NotFound from './components/notFound';
 import React, { Component } from "react";
 import NavBar from './components/navbar';
+import MovieForm from './components/movieForm';
 
 import './App.css';
 
@@ -15,6 +16,7 @@ class App extends Component {
        <NavBar/>
       <main className="container">
       <Switch>
+        <Route path="/movies/:id" component={MovieForm}/>
        <Route path="/movies" component={Movies}></Route>
       <Route path="/customers" component={Customers}></Route>
       <Route path="/rentals" component={Rentals}></Route>
@@ -24,7 +26,7 @@ class App extends Component {
       </Switch>
      
       </main>
-      </React.Fragment>
+      </React.Fragment> 
 
     );
   }
