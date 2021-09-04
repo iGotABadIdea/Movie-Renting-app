@@ -32,8 +32,8 @@ class LoginForm extends Component {
         return ( <div>
             <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
-            <Input name="username" value={account.username} label="Username" onchange={this.handleChange}/>
-            <Input name="password" value={account.password} label="Password" onchange={this.handleChange}/>
+            <Input name="username" value={account.username} label="Username" onChange={this.handleChange}/>
+            <Input name="password" value={account.password} label="Password" onChange={this.handleChange}/>
             <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div> );
