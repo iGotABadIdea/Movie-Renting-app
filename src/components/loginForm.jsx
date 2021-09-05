@@ -1,23 +1,40 @@
 import React, { Component } from 'react';
+import Joi from 'joi-browser'
 import Input from './common/input';
 class LoginForm extends Component {
    state={
     account:{username:'', password:''},
     errors:{}
    }
+   schema ={
+       username:Joi.string().required(),
+       password:Joi.string().required()
+   }
+   validateProperty=({name,value})=>{
+       if(name==='username')
+       if(value.trim()==='')return 'Username is required';
+
+       //...other rules 
+
+       if(name==='password')
+       if(value.trim()==='')return 'Password is required';
+       //...other rules 
+
+   }
    handleChange=({currentTarget:input})=>{
+        const errors={...this.state.errors};
+        const errorMessage=this.validateProperty(input);
+        if(errorMessage) errors[input.name]=errorMessage;
+        else delete errors[input.name];
+
+
        const account={...this.state.account};
        account[input.name]=input.value;
-       this.setState({account});
+       this.setState({account,errors});
    };
    validate=()=>{
-      const errors={}; 
-      const {account}=this.state; 
-      if(account.username.trim()==='')
-      errors.username='Username is required';
-      if(account.password.trim()==='')
-      errors.password='Password is required'; 
-      return Object.keys(errors).length===0?null:errors;
+       const result=Joi.validate(this.state.account,this.schema,{abortEarly:false});
+      
    }
     handleSubmit = e =>{
         e.preventDefault();
