@@ -3,7 +3,7 @@ import Joi from 'joi-browser'
 import Input from './common/input';
 class LoginForm extends Component {
    state={
-    account:{username:'', password:''},
+    data:{username:'', password:''},
     errors:{}
    }
    schema ={
@@ -23,13 +23,13 @@ class LoginForm extends Component {
         else delete errors[input.name];
 
 
-       const account={...this.state.account};
-       account[input.name]=input.value;
-       this.setState({account,errors});
+       const data={...this.state.data};
+       data[input.name]=input.value;
+       this.setState({data,errors});
    };
    validate=()=>{
        const option={abortEarly:false};
-       const {error}=Joi.validate(this.state.account,this.schema,option);
+       const {error}=Joi.validate(this.state.data,this.schema,option);
        if(!error) return null;
        const errors={};
        for(let item of error.details)
@@ -46,12 +46,12 @@ class LoginForm extends Component {
 
     };
     render() { 
-        const {account,errors}=this.state;
+        const {data,errors}=this.state;
         return ( <div>
             <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
-            <Input name="username" value={account.username} label="Username" onChange={this.handleChange} error={errors.username}/>
-            <Input name="password" value={account.password} label="Password" onChange={this.handleChange} error={errors.password}/>
+            <Input name="username" value={data.username} label="Username" onChange={this.handleChange} error={errors.username}/>
+            <Input name="password" value={data.password} label="Password" onChange={this.handleChange} error={errors.password}/>
             <button disabled={this.validate()} type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div> );
