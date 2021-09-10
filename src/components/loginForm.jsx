@@ -23,7 +23,7 @@ class LoginForm extends Form {
             {this.renderInput('password','Password','password')};
             {this.renderButton('Login')}
             </form>
-        </div> );
+        </div> );;
     }
 }
  

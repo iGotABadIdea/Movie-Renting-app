@@ -18,7 +18,13 @@ class RegistrationForm extends Form {
     render() { 
         return <div>
             <h1>Registration Form</h1>
-            
+             <form onSubmit={this.handleSubmit}>
+            {this.renderInput('email','Username')};
+            {this.renderInput('password','Password','password')};
+            {this.renderInput('Name','Name')}
+            {this.renderButton('Login')}
+            </form>
+
         </div>;
     }
 }
