@@ -44,9 +44,9 @@ class Form extends React.Component {
     return <button disabled={this.validate()} type="submit" className="btn btn-primary">{label}</button>
     
    }
-   renderInput(name,label){
+   renderInput(name,label,type="text"){
        const {data,errors}=this.state;
-       return <Input name={name} value={data[name]} label={label} onChange={this.handleChange} error={errors[name]}/>
+       return <Input type={type} name={name} value={data[name]} label={label} onChange={this.handleChange} error={errors[name]}/>
    }
    
 }
