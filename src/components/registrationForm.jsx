@@ -11,18 +11,21 @@ class RegistrationForm extends Form {
         errors:{}
     }
     schema={
-        username:Joi.string().email().required().label('Username'),
-       password:Joi.string().required().label('Password'),
+        username:Joi.string().required().email().label('Username'),
+       password:Joi.string().required().min(5).label('Password'),
        name:Joi.string().required().label('Name')
+    }
+    doSubmit=()=>{
+    console.log("submitted");
     }
     render() { 
         return <div>
             <h1>Registration Form</h1>
              <form onSubmit={this.handleSubmit}>
-            {this.renderInput('email','Username')};
-            {this.renderInput('password','Password','password')};
-            {this.renderInput('Name','Name')}
-            {this.renderButton('Login')}
+            {this.renderInput('username','Username',)};
+            {this.renderInput('password','Password','password')}
+            {this.renderInput('name','Name')}
+            {this.renderButton('Register')}
             </form>
 
         </div>;
