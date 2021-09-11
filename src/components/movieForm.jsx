@@ -6,14 +6,14 @@ class MovieForm extends Form {
         data:{
             title:'',
             numberInStock:'', 
-            Rate:''
+            rate:''
         },
         errors:{}
     }
     schema={
         title:Joi.string().required().label('Title'),
        numberInStock:Joi.number().integer().min(0).max(100).required().min(5).label('Number in Stock'),
-       Rate:Joi.number().integer().min(0).max(10).required().label('Rate')
+       rate:Joi.number().integer().min(0).max(10).required().label('Rate')
     }
     render() { 
         return <div>
@@ -26,7 +26,8 @@ class MovieForm extends Form {
             <option value="3">Thriller</option>
             </select>
             {this.renderInput('numberInStock','Number in Stock')}
-            {this.renderInput('title','Title')}
+            {this.renderInput('rate','Rate')}
+            {this.renderButton('Save')}
 
 
         </div>;
