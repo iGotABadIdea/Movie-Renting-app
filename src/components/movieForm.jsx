@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Form from './common/form';
 import {getMovie,saveMovie} from '../services/fakeMovieService';
-import {getGenres} from '../services/GenreService';
+import {getGenres} from '../services/fakeGenreService';
 import Joi from 'joi-browser';
 class MovieForm extends Form {
     state={
@@ -38,23 +38,24 @@ class MovieForm extends Form {
            title:movie.title,
            genreId:movie.genre._id,
            numberInStock:movie.numberInStock,
-           
+           rate:movie.dailyRentalRate
+
        }
+    }
+    doSubmit=()=>{
+        saveMovie(this.state.data);
+        this.props.history.push("/movies");
     }
     render() { 
         return <div>
             <h1>Movie Form</h1>
+            <form onSubmit={this.handleSubmit}>
             {this.renderInput('title','Title')}
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option selected>Genre</option>
-            <option value="1">Action</option>
-            <option value="2">Comedy</option>
-            <option value="3">Thriller</option>
-            </select>
-            {this.renderInput('numberInStock','Number in Stock')}
+            {this.renderSelect()}
+            {this.renderInput('numberInStock','Number in Stock','number')}
             {this.renderInput('rate','Rate')}
             {this.renderButton('Save')}
-
+            </form>
 
         </div>;
     }
