@@ -1,9 +1,36 @@
-import React from 'react';
-const MovieForm = ({match,history}) => {
-    return ( <div>
-        <h1>Movie Form {match.params.id}</h1> 
-        <button className="btn btn-primary" onClick={()=>history.push('/movies')}>Save</button>
-        </div>);
+import React, { Component } from 'react'
+import Form from './common/form';
+import Joi from 'joi-browser';
+class MovieForm extends Form {
+    state={
+        data:{
+            title:'',
+            numberInStock:'', 
+            Rate:''
+        },
+        errors:{}
+    }
+    schema={
+        title:Joi.string().required().label('Title'),
+       numberInStock:Joi.number().integer().min(0).max(100).required().min(5).label('Number in Stock'),
+       Rate:Joi.number().integer().min(0).max(10).required().label('Rate')
+    }
+    render() { 
+        return <div>
+            <h1>Movie Form</h1>
+            {this.renderInput('title','Title')}
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Genre</option>
+            <option value="1">Action</option>
+            <option value="2">Comedy</option>
+            <option value="3">Thriller</option>
+            </select>
+            {this.renderInput('numberInStock','Number in Stock')}
+            {this.renderInput('title','Title')}
+
+
+        </div>;
+    }
 }
  
 export default MovieForm;
