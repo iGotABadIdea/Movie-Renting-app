@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from '../services/fakeGenreService';
 import MoviesTable from './moviesTable'
@@ -53,7 +54,6 @@ class Movies extends Component {
       const {totalCount,data:movies}=this.getPageData();
         return (
           <React.Fragment>
-            {/* <NavBar/> */}
               <div className='row'>
           <div className="col-3">
             <ListGroup 
@@ -62,6 +62,7 @@ class Movies extends Component {
             onItemSelect={this.handleGenreSelect } />
           </div>
            <div className="col">
+             <Link to='/movies/new' type="button" className="btn btn-primary movieButton">New Movie</Link>
              <p>Showing {totalCount} movies in the data-base</p>
              <MoviesTable 
              movies={movies} 
