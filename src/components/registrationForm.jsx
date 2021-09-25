@@ -33,3 +33,4 @@ class RegistrationForm extends Form {
 }
  
 export default RegistrationForm;
+ //JUST A RANDOM COMMENT 
