@@ -19,11 +19,11 @@ class LoginForm extends Form {
         return ( <div>
             <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
-            {this.renderInput('username','Username')};
-            {this.renderInput('password','Password','password')};
+            {this.renderInput('username','Username')}
+            {this.renderInput('password','Password','password')}
             {this.renderButton('Login')}
             </form>
-        </div> );;
+        </div> )
     }
 }
  
